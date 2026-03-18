@@ -1,80 +1,159 @@
 import streamlit as st
 import time
 
-# --- 1. PAGE SETUP ---
-st.set_page_config(page_title="Chetan Sharma | Portfolio", layout="wide", page_icon="🎬")
+# --- PAGE SETUP ---
+st.set_page_config(
+    page_title="Chetan Sharma | Portfolio",
+    layout="wide",
+    page_icon="🎬"
+)
 
-# Custom CSS for Sleek Dark UI
+# --- CUSTOM CSS (Professional Dark UI) ---
 st.markdown("""
-    <style>
-    .stApp { background-color: #0b0d10; }
-    .construction-text { color: #ffcc00; font-size: 24px; font-weight: bold; text-align: center; }
-    .main-title { color: #00e6ff; font-size: 35px; font-weight: bold; }
-    </style>
-    """, unsafe_allow_html=True)
+<style>
 
-# --- 2. MODULES (FUNCTIONS) ---
+.stApp {
+    background: linear-gradient(180deg, #0b0d10, #111827);
+    color: white;
+}
+
+.main-title {
+    color: #00e6ff;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #9ca3af;
+    font-size: 18px;
+}
+
+.card {
+    background-color: #111827;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    margin-bottom: 15px;
+}
+
+.sidebar-title {
+    color: #00e6ff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+# ---------- FUNCTIONS ----------
 
 def show_under_construction(section_name):
-    """Har section ke liye professional animation aur message"""
+
     st.markdown(f"<div class='main-title'>{section_name}</div>", unsafe_allow_html=True)
     st.write("---")
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
+
+    col1, col2, col3 = st.columns([1,2,1])
+
     with col2:
-        # Lottie animation ki jagah hum Streamlit ka native spinner aur warning use karenge
-        st.warning(f"🚧 This **{section_name}** section is currently under construction.")
-        with st.status("Fetching latest edits...", expanded=True):
-            st.write("Optimizing high-retention assets...")
-            time.sleep(1)
-            st.write("Polishing visual elements...")
-            time.sleep(1)
-        st.info("Bhai, thoda sabar rakho! Ek dum 'Elite' kaam render ho raha hai. 🔥")
-        st.image("https://via.placeholder.com/600x300.png?text=Coming+Soon+...+Working+on+Quality", use_container_width=True)
+
+        st.warning(f"🚧 {section_name} section under development")
+
+        with st.status("Rendering assets...", expanded=True):
+            st.write("Loading modules...")
+            time.sleep(0.7)
+            st.write("Applying UI polish...")
+            time.sleep(0.7)
+            st.write("Finalizing layout...")
+            time.sleep(0.7)
+
+        st.info("Elite quality work in progress 🔥")
+
+        st.image(
+            "https://via.placeholder.com/700x350.png?text=Coming+Soon",
+            use_container_width=True
+        )
+
+
+# ---------- HOME ----------
 
 def show_overview():
+
     st.markdown("<div class='main-title'>Chetan Sharma</div>", unsafe_allow_html=True)
-    st.write("### Digital Creator & Tech Architect")
-    st.write("Hathras se Global tak ka safar. Building high-impact digital assets.")
+    st.markdown("<div class='subtitle'>Digital Creator • Video Editor • Web Learner</div>", unsafe_allow_html=True)
+
     st.write("---")
-    st.success("✅ Dashboard Live & Responsive")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("<div class='card'>🎬 Video Editing<br>High retention edits</div>", unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("<div class='card'>📊 Social Media<br>Content strategy</div>", unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("<div class='card'>🌐 Web Skills<br>HTML CSS JS</div>", unsafe_allow_html=True)
+
+    st.write("---")
+
+    st.success("Portfolio Dashboard Live")
+
+
+# ---------- CONNECT ----------
 
 def show_connect():
-    st.markdown("<div class='main-title'>Connect with Me</div>", unsafe_allow_html=True)
-    st.write("Let's build something legendary together.")
-    st.link_button("LinkedIn Profile", "https://linkedin.com")
-    st.info("Email: workwithchetansharma@gmail.com")
 
-# --- 3. MAIN APP LOGIC (ROUTING) ---
+    st.markdown("<div class='main-title'>Connect With Me</div>", unsafe_allow_html=True)
+
+    st.write("Available for freelance & job work")
+
+    st.link_button("LinkedIn", "https://linkedin.com")
+
+    st.code("workwithchetansharma@gmail.com")
+
+
+# ---------- MAIN ----------
 
 def main():
-    # Sidebar Navigation
-    with st.sidebar:
-        st.markdown("<h2 style='color: #00e6ff;'>📂 Menu</h2>", unsafe_allow_html=True)
-        choice = st.radio("Select Section:", [
-            "🏠 Home Overview", 
-            "🎬 Video Editing", 
-            "📸 Photo Editing", 
-            "📊 Social Media Mgmt", 
-            "✍️ Content Writing",
-            "🌐 Connect"
-        ])
-        st.markdown("---")
-        st.write("v1.2 | Powered by Python")
 
-    # Routing Logic
-    if choice == "🏠 Home Overview":
+    with st.sidebar:
+
+        st.markdown("<div class='sidebar-title'>📂 Portfolio Menu</div>", unsafe_allow_html=True)
+
+        choice = st.radio(
+            "",
+            [
+                "🏠 Overview",
+                "🎬 Video Editing",
+                "📸 Photo Editing",
+                "📊 Social Media",
+                "✍️ Content Writing",
+                "🌐 Connect"
+            ]
+        )
+
+        st.markdown("---")
+        st.caption("v2.0 | Built with Streamlit")
+
+    if choice == "🏠 Overview":
         show_overview()
+
     elif choice == "🎬 Video Editing":
         show_under_construction("Video Editing")
+
     elif choice == "📸 Photo Editing":
         show_under_construction("Photo Editing")
-    elif choice == "📊 Social Media Mgmt":
-        show_under_construction("Social Media Management")
+
+    elif choice == "📊 Social Media":
+        show_under_construction("Social Media")
+
     elif choice == "✍️ Content Writing":
         show_under_construction("Content Writing")
+
     elif choice == "🌐 Connect":
         show_connect()
+
 
 if __name__ == "__main__":
     main()
